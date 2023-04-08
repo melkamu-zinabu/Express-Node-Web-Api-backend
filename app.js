@@ -1,8 +1,10 @@
-import  express  from "express";
+import  express from "express";
 import dotenv from 'dotenv'
-import mongoose from "mongoose";
 import  CONNECTDB  from "./config/db.js";
 import userrouter from "./routes/user-routes.js";
+import adminrouter from './routes/admin-route.js'
+
+
 dotenv.config();
 
 const app=express();
@@ -13,6 +15,9 @@ CONNECTDB();
 const port=3000;
 //here is the middleware
 app.use('/user', userrouter)
+app.use('/admin', adminrouter)
+
+
 app.listen(port,MEL);
 
 function MEL(){

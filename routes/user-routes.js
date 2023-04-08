@@ -7,4 +7,5 @@ router.get('/',getalluser);
  router.put("/:id",updateuser)
  router.delete('/:id',deleteuser);
  router.post('/login',login);
+
 export default router;
