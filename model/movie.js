@@ -28,7 +28,9 @@ const movieschema=new schema({
     admin:{
         type:String,
         required:true
-    }
+    },
+    actors:[
+        {type:String,required:true}]
 
 
 

@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import  CONNECTDB  from "./config/db.js";
 import userrouter from "./routes/user-routes.js";
 import adminrouter from './routes/admin-route.js'
+import movierouter from "./routes/movie-route.js";
 
 
 dotenv.config();
@@ -16,6 +17,7 @@ const port=3000;
 //here is the middleware
 app.use('/user', userrouter)
 app.use('/admin', adminrouter)
+app.use('/movie', movierouter)
 
 
 app.listen(port,MEL);
