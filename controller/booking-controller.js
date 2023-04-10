@@ -79,6 +79,10 @@ export const deletebooking=async(req,res)=>{
     } catch (error) {
         console.log(error)
     }
+    if(!booking){
+        return res.status(500).json({mesage:"no such bookin"})
+    }
+    return res.status(200).json({mesage:"deleted successfully"})
 
 }
 
