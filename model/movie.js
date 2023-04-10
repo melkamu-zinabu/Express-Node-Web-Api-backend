@@ -1,18 +1,17 @@
-const { default: mongoose } = require("mongoose");
-
-const schema=new mongoose.Schema;
+import mongoose from "mongoose";
+const schema= mongoose.Schema;
 const movieschema=new schema({
     title:{
         type:String,
         required:true
     },
     description:{
-        type:String,
+        type:String, 
         required:true
     },
     releasedate:{
         type:Date,
-        required:true
+        required:false
     },
     posterurl:{
         type:String,
@@ -23,10 +22,12 @@ const movieschema=new schema({
 
     },
     booking:[{
-       type:String 
+       type:mongoose.Types.ObjectId,
+       ref:"Booking" 
     }],
     admin:{
-        type:String,
+        type:mongoose.Types.ObjectId,
+        ref:'Admin',
         required:true
     },
     actors:[
@@ -34,5 +35,5 @@ const movieschema=new schema({
 
 
 
-})
-export default mongoose.model('movie',movieschema)
+});
+export default mongoose.model('Movie',movieschema)

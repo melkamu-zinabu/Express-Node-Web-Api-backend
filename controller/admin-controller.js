@@ -60,7 +60,17 @@ export const adminlogin=async(req,res,next)=>{
     // when admin login we just need to create token to authorise the admin to create movies
     
    
-    const token=Jwt.sign({id:existingadmin._id},process.env.secret_key,{expiresIn:'7d'})
+    const token=Jwt.sign({id:existingadmin._id},process.env.secret_key, { expiresIn: '1h' })
     return res.status(200).json({message:'authentication complete',token,id:existingadmin._id})
    // const token=Jwt.sign({id:existingadmin._id,process.env.secret_key})
+}
+
+export const getadmin=async(req,res)=>{
+    let admins;
+    try {
+        admins=await admin.find()
+    } catch (error) {
+        return console.log(error)
+    }
+    return res.status(200).json({message:admins});
 }

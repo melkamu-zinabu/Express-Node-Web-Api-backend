@@ -12,8 +12,9 @@ const adminschema=new schema({
         required:true,
         Unique:true
     },
-    addmoviews:[{
-       type:String,
+    addmovies:[{
+       type:mongoose.Types.ObjectId,
+       ref:'Movie'
 
     },],
 })
