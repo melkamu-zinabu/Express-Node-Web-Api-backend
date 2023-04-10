@@ -25,8 +25,8 @@ export const newbooking=async(req,res)=>{
         Newbooking=new Booking({
             movie,date:new Date(`${date}`),seatnumber,user
         })
-    session=mongoose.startSession()
-    session.startTransaction()
+    const session=await mongoose.startSession()
+    await session.startTransaction();
     await existinguser.booking.push(Newbooking)
     await existingmovie.booking.push(Newbooking)
     await existinguser.save({session})
@@ -45,3 +45,40 @@ export const newbooking=async(req,res)=>{
 
 
 }
+
+export const getbookingbyid=async(req,res)=>{
+    const id=req.params.id;
+    let booking
+    try {
+        booking=await Booking.findById(id);
+    
+    } catch (error) {
+        return console.log(error);
+
+    }
+    if(!booking){
+        return res.status(500).json({message:"not found with id"})
+    }
+    return res.status(200).json({message:booking})
+ 
+}
+
+export const deletebooking=async(req,res)=>{
+    const id=req.params.id
+    let booking
+    try {
+        booking=await Booking.findByIdAndRemove(id).populate("user movie")
+        const session=await mongoose.startSession()
+        session.startTransaction()
+        await booking.user.Booking.pull(booking)
+        await booking.movie.Booking.pull(booking)
+        await booking.movie.save(session);
+        await booking.user.save(session);
+        session.commitTransaction();
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+

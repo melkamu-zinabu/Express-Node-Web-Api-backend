@@ -38,7 +38,9 @@ app.use('/booking', newbooking)
 //user
 //movie
 
-
+// NOW I NEED TO DO PAGINATION, SEARCH FILTER AND OTHER
+// GIVE THE ENDPOINT CODE TO THE CHAT GPT IT WILL RETURN THE CODE WITH PAGINATION AND WITH SEARCH AND FILTER
+//passport.js and socket.io and deployment, validator,  cons
 app.listen(port,MEL);
 
 function MEL(){
