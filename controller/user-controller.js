@@ -118,6 +118,25 @@ export const login = async(req,res) => {
    return res.status(200).json({message:existinuser})
   
 }
+export const getbookingofuser=async(req,res)=>{
+    const id=req.params.id;
+    let bookings
+    try {
+        bookings=await Booking.find({user:id})
+
+    } catch (error) {
+        return console.log(error)
+    }
+    if(!bookings){
+        return res.status(500).json({message:"unable to get book"})
+
+    }
+    return res.status(200).json({bookings})
+
+}
+
+
+
 
 
 
