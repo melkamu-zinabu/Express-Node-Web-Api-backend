@@ -16,6 +16,9 @@ app.use(express.json());
 
 CONNECTDB();
 const port=3000;
+
+//when you use a reference (ref) in a Mongoose schema,
+// it will store the ID of the referenced document in the field instead of embedding the whole document.
 //here is the middleware
 app.use('/user', userrouter)
 app.use('/admin', adminrouter)
